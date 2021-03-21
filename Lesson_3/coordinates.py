@@ -1,17 +1,38 @@
-coord_x = float(input('Enter the X coord -> '))
-coord_y = float(input('Enter the Y coord -> '))
+def get_quadrant(coord_x, coord_y):
+    answer = 0
+    if coord_x > 0 and coord_y > 0:
+        answer = 1
+    elif coord_x < 0 and coord_y > 0:
+        answer = 2
+    elif coord_x < 0 and coord_y < 0:
+        answer = 3
+    elif coord_x > 0 and coord_y < 0:
+        answer = 4
+    elif coord_x == 0 and coord_y == 0:
+        answer = 0
+    elif coord_x == 0:
+        answer = -1
+    else:
+        answer = -2
+    return answer
 
-if coord_x > 0 and coord_y > 0:
-    print('I Quadrant')
-elif coord_x < 0 and coord_y > 0:
-    print('II Quadrant')
-elif coord_x < 0 and coord_y < 0:
-    print('III Quadrant')
-elif coord_x > 0 and coord_y < 0:
-    print('IV Quadrant')
-elif coord_x == 0 and coord_y == 0:
-    print('Zero Point')
-elif coord_x == 0:
-    print('Point on O-X beam')
-else:
-    print('Point on O-Y beam')
+
+def print_quadrant(quadrant):
+    if quadrant > 0:
+        print(f'Point in {quadrant} quadrant')
+    elif quadrant < 0:
+        if quadrant == -1:
+            print('Point on O-Y beam ')
+        else:
+            print('Point on O-X beam ')
+    else:
+        print('Zero point')
+
+
+while True:
+    x = float(input('X -> '))
+    y = float(input('Y -> '))
+   
+    print_quadrant(get_quadrant(x, y))
+    if input('Do you want to continue ? ') != 'y':
+        break
